@@ -13,7 +13,7 @@
 #include <sys/ioctl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <linux/i2c-dev.h>x
+#include <linux/i2c-dev.h>
 
 #endif
 

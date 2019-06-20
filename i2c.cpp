@@ -1,5 +1,7 @@
 #include "i2c.h"
 
+using namespace std;
+
 void selectDevice(int fd, int addr, char * name) {
     if (ioctl(fd, I2C_SLAVE, addr) < 0) {
         fprintf(stderr, "%s not present\n", name);
@@ -12,6 +14,19 @@ void writeToDevice(int fd, int reg, int val) {
     buf[1] = val;
 
     if (write(fd, buf, 2) != 2) {
+        fprintf(stderr, "Can't write to device\n");
+    }
+}
+void writeToDeviceShort(int fd, int reg, int val) {
+    char buf[3];
+    buf[0] = reg;
+    int val1 = val >> 8;
+    int val2 = val & 0xFF;
+    
+    buf[1] = val1;
+    buf[2] = val2;
+
+    if (write(fd, buf, 3) != 3) {
         fprintf(stderr, "Can't write to device\n");
     }
 }
