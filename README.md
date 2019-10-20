@@ -9,4 +9,4 @@ This repository contains the code run on the raspberry pi. It outputs the necess
 
 ## Set up webpage
 
-1. Follow this (Tutorial)[https://www.raspberrypi.org/documentation/remote-access/web-server/nginx.md]
+1. Follow this [Tutorial](https://www.raspberrypi.org/documentation/remote-access/web-server/nginx.md)
