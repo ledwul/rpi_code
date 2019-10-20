@@ -3,6 +3,7 @@ cmake_minimum_required( VERSION 2.6 )
 project( ledwul )
 set( SOURCE_FILES amp_new.cpp )
 set( CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/Modules/")
+set(CMAKE_CXX_FLAGS "-O3 -Wall -Wextra -Wpedantic")
 
 add_executable( ledwul ${SOURCE_FILES} )
 

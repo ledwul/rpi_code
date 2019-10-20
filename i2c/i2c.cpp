@@ -37,11 +37,11 @@ short readShort(int fd, int reg){
 	unsigned char buf[16];
 	buf[0]=reg;
 	if (write(fd,buf,1) != 1){
-		cout << "MPU6050: can't tell device to read from buffer" << endl;
+		cout << "can't tell device to read from buffer" << endl;
 		onerr = 10;
 	}
 	if (read(fd,buf,2) != 2){
-		cout << "MPU6050: can't read from device" << endl;
+		cout << "can't read from device" << endl;
 		onerr = 10;
 	}
 	short res = (buf[0] << 8) + buf[1];
@@ -55,11 +55,11 @@ short readShortInv(int fd, int reg){
 	unsigned char buf[16];
 	buf[0]=reg;
 	if (write(fd,buf,1) != 1){
-		cout << "MPU6050: can't tell device to read from buffer" << endl;
+		cout << "can't tell device to read from buffer" << endl;
 		onerr = 10;
 	}
 	if (read(fd,buf,2) != 2){
-		cout << "MPU6050: can't read from device" << endl;
+		cout << "can't read from device" << endl;
 		onerr = 10;
 	}
 	short res = (buf[1] << 8) + buf[0];
@@ -73,11 +73,11 @@ long long readLong(int fd, int reg, int bytes){
 	unsigned char buf[16];
 	buf[0]=reg;
 	if (write(fd,buf,1) != 1){
-		cout << "MPU6050: can't tell device to read from buffer" << endl;
+		cout << "can't tell device to read from buffer" << endl;
 		onerr = 10;
 	}
 	if (read(fd,buf,bytes) != bytes){
-		cout << "MPU6050: can't read from device" << endl;
+		cout << "can't read from device" << endl;
 		onerr = 10;
 	}
 	long long res = 0;
@@ -92,11 +92,11 @@ short readByte(int fd, int reg){
 	unsigned char buf[16];
 	buf[0]=reg;
 	if (write(fd,buf,1) != 1){
-		cout << "MPU6050: can't tell device to read from buffer" << endl;
+		cout << "can't tell device to read from buffer" << endl;
 		onerr = 10;
 	}
 	if (read(fd,buf,1) != 1){
-		cout << "MPU6050: can't read from device" << endl;
+		cout << "can't read from device" << endl;
 		onerr = 10;
 	}
 	short res = buf[0];
