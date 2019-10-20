@@ -24,3 +24,5 @@ short readShort(int fd, int reg);
 short readShortInv(int fd, int reg);
 long long readLong(int fd, int reg, int bytes);
 short readByte(int fd, int reg);
+
+//crazy comment
