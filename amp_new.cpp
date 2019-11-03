@@ -26,6 +26,18 @@ std::chrono::high_resolution_clock::time_point getTime(){
   return chrono::high_resolution_clock::now();
 }
 
+int read_time(){
+  ifstream myfile ("/home/pi/wakeuptime.txt");
+  int target_time;
+  if (myfile.is_open()){
+    myfile >> target_time;
+  }else{
+    cerr << "wakeuptime.txt not found!" << endl;
+    target_time = time(0) + 25;
+  }
+  return target_time;
+}
+
 int main(){
   try{
     if(gpioInitialise() < 0) throw 1;
@@ -35,15 +47,8 @@ int main(){
   }
 
   
-  ifstream myfile ("wakeuptime.txt");
-  int target_time;
-  if (myfile.is_open()){
-    myfile >> target_time;
-  }else{
-    cerr << "wakeuptime.txt not found!" << endl;
-    target_time = time(0) + 25;
-  }
-  int time_until_wakeup = target_time - time(0);
+  
+  int time_until_wakeup = read_time() - time(0);
   
   ADS1115_ADC adc_handler(I2C_ADDR, SHUNT_OHMS);
   ports_t ports = {4, 14, 15, 18};
@@ -61,6 +66,9 @@ int main(){
   }
   while (1) {
     index ++;
+    if (index % 10000 == 0){
+      time_until_wakeup = read_time() - time(0);
+    }
     float time = ((chrono::duration<float>)(getTime() - init)).count() - time_until_wakeup;
     for (int light = 0; light < 4; light++){
       float target = getTarget(light, time);
