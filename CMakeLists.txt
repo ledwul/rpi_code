@@ -1,9 +1,9 @@
 set ( VERBOSE=1 )
 cmake_minimum_required( VERSION 2.6 )
 project( ledwul )
-set( SOURCE_FILES amp_new.cpp )
+set( SOURCE_FILES main.cpp )
 set( CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/Modules/")
-set(CMAKE_CXX_FLAGS "-O3 -Wall -Wextra -Wpedantic")
+set(CMAKE_CXX_FLAGS "-O3 -Werror -Wall -Wextra -Wpedantic")
 
 add_executable( ledwul ${SOURCE_FILES} )
 
@@ -27,7 +27,7 @@ target_link_libraries( ledwul
 
 # Stop executable
 
-add_executable( ledwul_stop amp_stop.cpp )
+add_executable( ledwul_stop main_stop.cpp )
 
 target_link_libraries( ledwul_stop
   ${pigpio_LIBRARY}
@@ -36,15 +36,3 @@ target_link_libraries( ledwul_stop
   current_control
   )
 
-# New main file
-
-add_executable( ledwul_new main.cpp )
-
-target_link_libraries( ledwul_new
-  ${pigpio_LIBRARY}
-  Threads::Threads
-  i2c
-  current_control
-  )
-
-target_compile_options(ledwul_new PRIVATE -Werror -Wall -Wextra)
