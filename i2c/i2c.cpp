@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void selectDevice(int fd, int addr, char * name) {
+void selectDevice(int fd, int addr, std::string name) {
     if (ioctl(fd, I2C_SLAVE, addr) < 0) {
         fprintf(stderr, "%s not present\n", name);
     }

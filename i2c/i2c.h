@@ -17,12 +17,10 @@
 
 #endif
 
-void selectDevice(int fd, int addr, char * name);
+void selectDevice(int fd, int addr, std::string name);
 void writeToDevice(int fd, int reg, int val);
 void writeToDeviceShort(int fd, int reg, int val);
 short readShort(int fd, int reg);
 short readShortInv(int fd, int reg);
 long long readLong(int fd, int reg, int bytes);
 short readByte(int fd, int reg);
-
-//crazy comment
