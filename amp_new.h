@@ -17,7 +17,7 @@ template <typename T> int sign(T val) { return (T(0) < val) - (val < T(0)); }
  *
  * @return
  */
-float getTarget(int light, float time);
+float get_target_current(int light, float time);
 
 /**
  * @brief Interface for a high resolution clock from chrono
