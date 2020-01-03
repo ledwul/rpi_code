@@ -19,8 +19,32 @@ find_package( pigpio REQUIRED )
 find_package( Threads REQUIRED )
 
 target_link_libraries( ledwul
-    ${pigpio_LIBRARY}
-    Threads::Threads
-    i2c
-    current_control
-    )
+  ${pigpio_LIBRARY}
+  Threads::Threads
+  i2c
+  current_control
+  )
+
+# Stop executable
+
+add_executable( ledwul_stop amp_stop.cpp )
+
+target_link_libraries( ledwul_stop
+  ${pigpio_LIBRARY}
+  Threads::Threads
+  i2c
+  current_control
+  )
+
+# New main file
+
+add_executable( ledwul_new main.cpp )
+
+target_link_libraries( ledwul_new
+  ${pigpio_LIBRARY}
+  Threads::Threads
+  i2c
+  current_control
+  )
+
+target_compile_options(ledwul_new PRIVATE -Werror -Wall -Wextra)
